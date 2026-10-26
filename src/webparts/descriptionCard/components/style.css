@@ -1,0 +1,181 @@
+  /* .cardDescWrapper * { 
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+} 
+.cardDescWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px; 
+  }
+  .cardDescWrapper   .cardDesc {
+    position: relative;
+    background: #232b36;
+    border-radius: 0;
+    width: 100%;
+    height: fit-content;
+    min-height: 84px;
+    padding: 18px 16px 6px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    overflow: hidden;
+    cursor: default;
+    transition: min-height 0.25s ease, background 0.2s ease; 
+    flex-direction: column;
+  }
+   .cardDescWrapper  .cardDesc:hover {
+    background: #1a2029;
+    min-height: 190px;
+  }
+.cardDescWrapper .iconDiv{
+    display: flex; 
+    align-items: center;
+    gap: 12px;
+}
+   .cardDescWrapper  img {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+  } 
+
+   .cardDescWrapper  .title {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+   .cardDescWrapper  .desc {
+    color: rgb(230, 230, 230);
+    font-size: 14px;
+    line-height: 1.45;
+    margin: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: max-height 0.3s ease, opacity 0.25s ease, transform 0.25s ease;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  }
+   .cardDescWrapper  .cardDesc:hover .desc {
+    max-height: 220px;
+    opacity: 1;
+    transform: translateY(0); 
+  }  */
+
+
+
+
+
+
+
+
+
+  .cardDescWrapper * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+.cardDescWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+/* Outer wrapper: sets the size + 3D perspective */
+.cardDescWrapper .cardDesc {
+  perspective: 1000px;
+  width: 100%;
+  min-height: 150px;   /* was: height: 160px */
+  display: grid;       /* new */
+  cursor: default;
+  outline: none;
+}
+.cardDescWrapper .cardInner {
+  display: grid;       /* new: stacks both faces in one cell */
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  /* removed: position: relative; height: 100%; */
+}
+.cardDescWrapper .cardDesc:hover .cardInner,
+.cardDescWrapper .cardDesc:focus-visible .cardInner {
+  transform: rotateY(180deg);
+} 
+.cardDescWrapper .cardFace {
+  grid-area: 1 / 1;    /* new: both faces overlap in the same cell */
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px 14px 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* removed: position: absolute; inset: 0; overflow: hidden; */
+}
+.cardDescWrapper .cardFront {
+  background: #232b36;
+  justify-content: center;
+}
+
+/* Back */
+.cardDescWrapper .cardBack {
+  background: #1a2029;
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  gap: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.cardDescWrapper .iconDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cardDescWrapper img {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.cardDescWrapper .title {
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.cardDescWrapper .backTitle {
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+.cardDescWrapper .desc {
+  color: rgb(230, 230, 230);
+  font-size: 14px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;   /* prevents long words from overflowing */
+  text-align: center;
+    margin: auto;
+  /* removed: display: -webkit-box; -webkit-line-clamp; -webkit-box-orient; overflow: hidden; text-overflow: ellipsis; */
+}
+/* Touch devices: no hover, so tap/focus flips the card (tabIndex handles this) */
+/* @media (prefers-reduced-motion: reduce) {
+  .cardDescWrapper .cardInner {
+    transition: none;
+  }
+} */

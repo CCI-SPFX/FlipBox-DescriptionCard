@@ -1,0 +1,18 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.20.8",
+    "sdksVersions": {},
+    "version": "1.21.1",
+    "libraryName": "description-card",
+    "libraryId": "5ed91270-75dc-4aba-9237-74ee5ed356f7",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "description-card",
+    "solutionShortDescription": "description-card description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

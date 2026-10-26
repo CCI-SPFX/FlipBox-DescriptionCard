@@ -1,0 +1,160 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+/* Reset: applies in grid and slider mode */
+.cardSliderWrap * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+.cardSliderWrap {
+  position: relative;
+}
+
+/* Grid layout only */
+.cardDescWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+/* Card: 3D perspective + min height from property pane */
+.cardSliderWrap .cardDesc {
+  perspective: 1000px;
+  width: 100%;
+  min-height: var(--card-min-height, 150px);
+  display: grid;
+  cursor: default;
+  outline: none;
+}
+
+.cardSliderWrap .cardInner {
+  display: grid;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+/* When the card is a link */
+.cardSliderWrap a.cardInner {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.cardSliderWrap .cardDesc:hover .cardInner,
+.cardSliderWrap .cardDesc:focus-visible .cardInner {
+  transform: rotateY(180deg);
+}
+
+/* Shared face styles */
+.cardSliderWrap .cardFace {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px 14px 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--card-bg, #232b36);
+}
+
+.cardSliderWrap .cardFront {
+  justify-content: center;
+}
+
+/* Back: same color, darkened with a gradient layer (keeps scrolling working) */
+.cardSliderWrap .cardBack {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), var(--card-bg, #232b36);
+  transform: rotateY(180deg);
+  justify-content: center;
+  gap: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.cardSliderWrap .iconDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cardSliderWrap img {
+  flex: 0 0 auto;
+  width: var(--icon-size, 48px);
+  height: var(--icon-size, 48px);
+  object-fit: contain;
+}
+
+.cardSliderWrap .title {
+  color: var(--title-color, #fff);
+  font-size: var(--title-size, 15px);
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.cardSliderWrap .desc {
+  color: var(--desc-color, #e6e6e6);
+  font-size: var(--desc-size, 14px);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-align: center;
+  margin: auto ; 
+}
+.cardSliderWrap .swiper {
+  padding: 0 4px; 
+  position: relative;
+}
+.cardSliderWrap .swiperSlide {
+  height: auto;
+  display: flex;
+}
+.cardSliderWrap :global(.swiper-button-prev),
+.cardSliderWrap :global(.swiper-button-next) {
+  color: white;
+  background: rgb(139 201 186 / 65%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  top:50%;
+    transform: translateY(-50%);
+}
+.cardSliderWrap .swiper-button-next{
+    margin-right:-20px;
+}
+.cardSliderWrap .swiper-button-prev{
+    margin-left:-20px;
+}
+.cardSliderWrap :global(.swiper-button-prev)::after,
+.cardSliderWrap :global(.swiper-button-next)::after {
+  font-size: 12px;
+  font-weight: 700;
+}
+.cardDesc a{
+  // text-decoration: none;
+  font-size: var(--desc-size, 14px);
+  color: #8BC9BA;
+  text-align: center;
+  margin-bottom:auto;
+}
+:global {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10; 
+  }
+}
+.error {
+  color: #d13438;
+}
+
+// @media (prefers-reduced-motion: reduce) {
+//   .cardSliderWrap .cardInner {
+//     transition: none;
+//   }
+// }

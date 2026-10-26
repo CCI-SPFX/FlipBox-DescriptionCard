@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "description-card-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/descriptionCard/DescriptionCardWebPart.js",
+          "manifest": "./src/webparts/descriptionCard/DescriptionCardWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "DescriptionCardWebPartStrings": "lib/webparts/descriptionCard/loc/{locale}.js"
+  }
+}
